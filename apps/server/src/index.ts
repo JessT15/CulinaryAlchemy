@@ -33,7 +33,8 @@ app.use('/user', userRouter);
 app.get('/keep-alive', (req, res) => {
 	setTimeout(() => {
 		res.send('alive').end();
-	}, 1000);
+		fetch('https://culinaryalchemy.onrender.com/keep-alive')
+	}, 420000);
 })
 ;(async () => {
 	try {
