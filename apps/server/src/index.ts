@@ -33,8 +33,8 @@ app.use('/user', userRouter);
 app.get('/keep-alive', (req, res) => {
 	setTimeout(() => {
 		res.send('alive').end();
-		fetch('https://culinaryalchemy.onrender.com/keep-alive')
-	}, 420000);
+		
+	}, 10000);
 })
 ;(async () => {
 	try {
@@ -55,12 +55,19 @@ app.get('/keep-alive', (req, res) => {
 			console.log(`Server running on port ${PORT}`);
 		});
 		setInterval(() => {
+			fetch('https://examplee-6dbi.onrender.com/keep-alive', {
+				method: 'GET'
+			}).then(() => {
+				console.log('it looks like our server is alive');
+			}).catch(() => {
+				console.log('our server is dead');
+			});
 			fetch('https://culinaryalchemy.onrender.com/keep-alive', {
 				method: 'GET'
 			}).then(() => {
-				console.log('it looks like the server is alive');
+				console.log('it looks like the destination server is alive');
 			}).catch(() => {
-				console.log('the server is dead');
+				console.log('the destination server is dead');
 			});
 		}, (1000 * 60 * 12));
 	} catch (error) {
